@@ -1,4 +1,5 @@
 ﻿using findeveryfilmapi.Configuration;
+using findeveryfilmapi.TvMaze;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,8 @@ namespace findeveryfilmapi
 #endif
             services.AddSingleton<TheMovieDbApiConfiguration>();
             services.AddScoped(serviceProvider => new TMDbClient(serviceProvider.GetService<TheMovieDbApiConfiguration>().ApiKey));
+
+            services.AddHttpClient<ITvMazeClient, TvMazeClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
