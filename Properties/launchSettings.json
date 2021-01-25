@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/films?query=Harry",
+      "launchUrl": "api/searchPeople?query=lauren",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "findeveryfilmapi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/films?query=Harry",
+      "launchUrl": "api/searchPeople?query=lauren",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
