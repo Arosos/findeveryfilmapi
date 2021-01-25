@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using findeveryfilmapi.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using TMDbLib.Client;
 
 namespace findeveryfilmapi
 {
@@ -25,6 +21,13 @@ namespace findeveryfilmapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+#if DEBUG
+            services.AddSingleton<IEnvironment, DebugEnvironment>();
+#else
+            services.AddSingleton<IEnvironment, Environment>();
+#endif
+            services.AddSingleton<TheMovieDbApiConfiguration>();
+            services.AddScoped(serviceProvider => new TMDbClient(serviceProvider.GetService<TheMovieDbApiConfiguration>().ApiKey));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
