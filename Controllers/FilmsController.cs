@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 
 namespace findeveryfilmapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class FilmsController : ControllerBase
     {
@@ -19,10 +20,17 @@ namespace findeveryfilmapi.Controllers
         }
 
         // GET api/films?query=Harry&page=1
-        [HttpGet]
+        [HttpGet("films")]
         public async Task<ActionResult<SearchContainer<SearchMovie>>> Get(string query, CancellationToken cancellationToken, int page = 1)
         {
             return await _apiClient.SearchMovieAsync(query, page: page, cancellationToken: cancellationToken);
+        }
+
+        // GET api/filmDetails?query=1
+        [HttpGet("filmDetails")]
+        public async Task<ActionResult<Movie>> FilmDetails(int query, CancellationToken cancellationToken)
+        {
+            return await _apiClient.GetMovieAsync(query, cancellationToken: cancellationToken);
         }
     }
 }
