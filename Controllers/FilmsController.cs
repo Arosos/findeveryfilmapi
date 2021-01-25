@@ -26,7 +26,7 @@ namespace findeveryfilmapi.Controllers
             return await _apiClient.SearchMovieAsync(query, page: page, cancellationToken: cancellationToken);
         }
 
-        // GET api/filmDetails?query=1
+        // GET api/filmDetails?query=671
         [HttpGet("filmDetails")]
         public async Task<ActionResult<Movie>> FilmDetails(int query, CancellationToken cancellationToken)
         {
