@@ -32,5 +32,13 @@ namespace findeveryfilmapi.Controllers
         {
             return await _apiClient.GetMovieAsync(query, cancellationToken: cancellationToken);
         }
+
+        // GET api/filmActors?query=671
+        [HttpGet("filmActors")]
+        public async Task<ActionResult<Credits>> FilmActors(int query, CancellationToken cancellationToken)
+        {
+            var movie = await _apiClient.GetMovieAsync(query, MovieMethods.Credits, cancellationToken: cancellationToken);
+            return movie.Credits;
+        }
     }
 }
