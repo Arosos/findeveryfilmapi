@@ -18,6 +18,7 @@ namespace findeveryfilmapi.Controllers
             _tvMazeClient = tvMazeClient;
         }
 
+        // GET api/searchPeople?query=lauren
         [HttpGet("searchPeople")]
         public async Task<ActionResult<IEnumerable<SearchPeopleResult>>> SearchPeople(string query, CancellationToken cancellationToken)
         {
