@@ -28,7 +28,9 @@ namespace findeveryfilmapi
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins("http://23.97.148.18")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                     });
             });
 
