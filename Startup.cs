@@ -44,6 +44,8 @@ namespace findeveryfilmapi
             services.AddScoped(serviceProvider => new TMDbClient(serviceProvider.GetService<TheMovieDbApiConfiguration>().ApiKey));
 
             services.AddHttpClient<ITvMazeClient, TvMazeClient>();
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +58,12 @@ namespace findeveryfilmapi
 
             app.UseCors(MyAllowSpecificOrigins);
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FindEveryFilmApi");
+            });
         }
     }
 }
